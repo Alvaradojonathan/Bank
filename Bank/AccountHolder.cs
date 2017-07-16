@@ -32,7 +32,7 @@ namespace Bank
         }
         public override void ClientInformation()
         {
-            Console.WriteLine("Account Holder Information:\nName: " + firstName + " " + lastName);
+            Console.WriteLine("Account Information:\nName: " + firstName + " " + lastName);
             Console.WriteLine("Phone Number: " + phoneNumber);
             Console.WriteLine("E-Mail Address: " + email);
         }

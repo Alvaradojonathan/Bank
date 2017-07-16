@@ -10,94 +10,63 @@ namespace Bank
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bank of Cleveland");
-            AccountHolder client1 = new AccountHolder("Jonathan", "Alvarado", "216-356-8350", "J.AlvRubio@gmail.com");
-            Savings saving1 = new Savings(3000.0d,"108111264");
+            Console.WriteLine("Bank of Panama: Where your money \"was\" safe\n\n");
+            //Client and account info
+            AccountHolder client1 = new AccountHolder("Jonathan", "Alvarado", "216-356-8350", "j.alvrubio@gmail.com");
+            Savings saving1 = new Savings(3000.0d, "108111264");
             Checking checking1 = new Checking(1000.0d, "246730001");
+            string cont;
 
-            int viewClientInformation = 1;
-            int viewAccountBalance = 2;
-            int depositFunds = 3;
-            int withdrawFunds = 4;
-            int exit = 5;
-            int checking = 1;
-            int savings = 2;
-            int menuSelect;
-            int subMenuSelect;
+            do
+            {
+                Console.WriteLine("1. View Client Information");
+                Console.WriteLine("2. View Account Balance");
+                Console.WriteLine("3. Deposit Funds");
+                Console.WriteLine("4. Withdraw Funds");
+                Console.WriteLine("5. Exit");
 
-            Console.WriteLine("[1] View Client Information\n[2] View Account Balance\n[3] Deposit Funds\n[4] Withdraw Funds\n[5] Exit");
-            menuSelect = int.Parse(Console.ReadLine());
-            if (menuSelect == viewClientInformation)
-            {
-                client1.ClientInformation();
-            }
-            else if (menuSelect == viewAccountBalance)
-            {
-                Console.WriteLine("[1] Checking Account Balance\n[2] Savings Account Balance");
-                subMenuSelect = int.Parse(Console.ReadLine());
-                if (subMenuSelect == checking)
+                Console.Write("\nSelect option number: ");
+                int selection = int.Parse(Console.ReadLine());
+                while (selection < 1 || selection > 5)
                 {
-                    Console.WriteLine(checking1.GetBalance());
+                    Console.WriteLine("\nSelect a valid option: ");
+                    selection = int.Parse(Console.ReadLine());
                 }
-                else
+                Console.WriteLine();
+                int subMenu;
+                switch (selection)
                 {
-                    Console.WriteLine(saving1.GetBalance());
-                }
-
-            }
-            else if (menuSelect == depositFunds)
-            {
-                Console.WriteLine("Deposit\n[1] To Checking Account\n[2] To Savings Account");
-                subMenuSelect = int.Parse(Console.ReadLine());
-                while (subMenuSelect != checking || subMenuSelect != savings)
-                {
-                    Console.WriteLine("Pleae select a valid option");
-                    subMenuSelect = int.Parse(Console.ReadLine());
-                }
-                if (subMenuSelect == checking)
-                {                    
-                    Console.WriteLine("How much will you deposit into your checking account today?");
-                    double amount = double.Parse(Console.ReadLine());
-                    checking1.Deposit(amount);
-                    checking1.GetBalance();
-                }
-                else
-                {
-                    Console.WriteLine("How much will you deposit into your savings account today?");
-                    double amount = double.Parse(Console.ReadLine());
-                    saving1.Deposit(amount);
-                    saving1.GetBalance();
+                    case 1:
+                        {
+                            client1.ClientInformation();
+                            return;
+                        }
+                    case 5:
+                        {
+                            client1.ClientInformation();
+                            Console.WriteLine("Savings account balance: " + saving1.GetBalance());
+                            Console.WriteLine("Checking account balance: " + checking1.GetBalance());
+                            Environment.Exit(0);
+                            return;
+                        }
+                    default:
+                        {
+                            Console.Write("\nSelect option number: ");
+                            selection = int.Parse(Console.ReadLine());
+                            while (selection < 1 || selection > 2)
+                            {
+                                Console.WriteLine("\nSelect a valid option: ");
+                                selection = int.Parse(Console.ReadLine());
+                            }
+                            if (selection == 1)
+                            {
+                                subMenu = selection;
+                            }
+                            return;
+                        }
                 }
             }
-            else if (menuSelect == withdrawFunds)
-            {
-                Console.WriteLine("Withdraw\n[1] From Checking Account\n[2] From Savings Account");
-                subMenuSelect = int.Parse(Console.ReadLine());
-                while (subMenuSelect != checking || subMenuSelect != savings)
-                {
-                    Console.WriteLine("Pleae select a valid option");
-                    subMenuSelect = int.Parse(Console.ReadLine());
-                }
-                if (subMenuSelect == checking)
-                {
-                    Console.WriteLine("How much will you deposit into your checking account today?");
-                    double amount = double.Parse(Console.ReadLine());
-                    checking1.Withdraw(amount);
-                    checking1.GetBalance();
-                }
-                else
-                {
-                    Console.WriteLine("How much will you deposit into your savings account today?");
-                    double amount = double.Parse(Console.ReadLine());
-                    saving1.Withdraw(amount);
-                    saving1.GetBalance();
-                }
-            }
-            else if (menuSelect == exit)
-            {
-                Environment.Exit(0);
-            }
+            while (cont == "yes");
         }
-
     }
 }
