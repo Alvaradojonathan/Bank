@@ -30,18 +30,24 @@ namespace Bank
         //withdraw, not allowed if balance will be negative
         public override double Withdraw(double amount)
         {
-            if(amount > balance)
+            if (amount > balance)
             {
                 throw new Exception("Transaction Denied. Contact your bank.");
             }
             else
             {
-            return base.Withdraw(amount);
+                balance -= amount;
+                return balance;
             }
         }
         public double GetBalance()
         {
             return Balance;
+        }
+
+        public override string AccountNumber()
+        {
+            return accountNumber;
         }
     }
 }

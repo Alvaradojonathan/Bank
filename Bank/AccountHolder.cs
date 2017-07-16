@@ -32,9 +32,10 @@ namespace Bank
         }
         public override void ClientInformation()
         {
+            Console.SetCursorPosition((Console.WindowWidth / 3), 13);
             Console.WriteLine("Account Information:\nName: " + firstName + " " + lastName);
-            Console.WriteLine("Phone Number: " + phoneNumber);
-            Console.WriteLine("E-Mail Address: " + email);
+            Console.WriteLine("\nPhone Number: " + phoneNumber);
+            Console.WriteLine("\nE-Mail Address: " + email);
         }
     }
 }

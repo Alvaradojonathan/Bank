@@ -23,7 +23,8 @@ namespace Bank
         //deposit
         public override double Deposit(double amount)
         {
-            return base.Deposit(amount);
+            this.balance += amount;
+            return balance;
         }
 
         //withdraw
@@ -34,6 +35,11 @@ namespace Bank
         public double GetBalance()
         {
             return Balance;
+        }
+
+        public override string AccountNumber()
+        {
+            return accountNumber;
         }
     }
 }
