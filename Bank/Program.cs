@@ -20,6 +20,7 @@ namespace Bank
             string makeTransaction = "yes";
             do
             {
+                //Bank name and menue display
                 Console.WriteLine("THE CENTRAL BANK OF PANAMA TAX HAVEN");
                 Console.WriteLine("\n\n1. View Client Information");
                 Console.WriteLine("2. View Account Balance");
@@ -27,6 +28,7 @@ namespace Bank
                 Console.WriteLine("4. Withdraw Funds");
                 Console.WriteLine("5. Exit");
 
+                //Asking the user to select a valid option
                 Console.Write("\nSelect option number: ");
                 int selection = int.Parse(Console.ReadLine());
                 while (selection < 1 || selection > 5)
@@ -38,6 +40,7 @@ namespace Bank
                 int subMenu;
                 if (selection == 1)
                 {
+                    //Display client information
                     client1.ClientInformation();
                     Console.WriteLine("\nSavings account number: " + saving1.AccountNumber() + "\nBalance: " + saving1.GetBalance().ToString("C2"));
                     Console.WriteLine("\nChecking account number: " + checking1.AccountNumber() + "\nBalance: " + checking1.GetBalance().ToString("C2"));
@@ -46,10 +49,12 @@ namespace Bank
 
                 else if (selection == 5)
                 {
+                    //Exit if option 5 is selected
                     Environment.Exit(0);
                 }
                 else
                 {
+                    //Submenu Display
                     Console.WriteLine("1. Checking\n2. Savings");
                     Console.Write("Select option number: ");
                 }
@@ -62,6 +67,7 @@ namespace Bank
                         selection = int.Parse(Console.ReadLine());
 
                     }
+                    //Display balance
                     if (selection == 2 && subMenu == 1)
                     {
                         Console.WriteLine("\nChecking account balance: "+checking1.GetBalance().ToString("C2"));
@@ -72,6 +78,7 @@ namespace Bank
                         Console.WriteLine("\nSavings account balance: "+saving1.GetBalance().ToString("C2"));
                         makeTransaction = Transaction();
                     }
+                    //New deposit
                     else if (selection == 3 && subMenu == 1)
                     {
                         Console.WriteLine("How  much would you like to deposit into checking today?");
@@ -88,6 +95,7 @@ namespace Bank
                         Console.WriteLine(saving1.GetBalance().ToString("C2"));
                         makeTransaction = Transaction();
                     }
+                    //Withdrawal
                     else if (selection == 4 && subMenu == 1)
                     {
                         Console.WriteLine("How  much would you like to withdraw from checking today?");
@@ -108,6 +116,7 @@ namespace Bank
             }
             while (makeTransaction == "yes");
         }
+        //Continue transactions or end program
         public static string Transaction()
         {
             Console.WriteLine("\nWould you like to make another transaction? Yes/No");
